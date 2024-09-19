@@ -1,5 +1,4 @@
-#from .. import ambs, fxs, guidesheets, marketshare, pd, rates, rp, seclending, soma, tsy
-from nyfedapi import ambs
+from nyfedapi import ambs, fxs, guidesheets, marketshare, pd, rates, rp, seclending, soma, tsy
 import pandas
 import pytest
 
@@ -22,7 +21,7 @@ def test_ambs_results_last_number():
 
 def test_ambs_results_search():
     assert isinstance(ambs.results_search(operation="all", include="summary"), pandas.DataFrame)
-    #assert isinstance(ambs.results_search(operation="all", include="details", startDate="2021-01-01", endDate="2021-01-02"), pandas.DataFrame)
+    assert isinstance(ambs.results_search(operation="all", include="details", startDate="2021-01-01", endDate="2021-01-02"), pandas.DataFrame)
 
 
 # Central Bank Liquidity Swaps Operations
