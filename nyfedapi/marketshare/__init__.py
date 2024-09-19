@@ -1,4 +1,3 @@
-from . import __base_url
 import pandas as pd
 
 
@@ -12,7 +11,7 @@ def qtrly_latest() -> pd.DataFrame:
     Returns:
         pd.DataFrame: Latest quarterly marketshare data.
     """
-    return pd.read_json(f"{__base_url}/api/marketshare/qtrly/latest.json")
+    return None
 
 
 def ytd_latest() -> pd.DataFrame:
@@ -25,4 +24,4 @@ def ytd_latest() -> pd.DataFrame:
     Returns:
         pd.DataFrame: Latest year-to-date marketshare data.
     """
-    return pd.read_json(f"{__base_url}/api/marketshare/ytd/latest.json")
+    return None

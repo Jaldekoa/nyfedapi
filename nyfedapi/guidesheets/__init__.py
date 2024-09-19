@@ -1,4 +1,3 @@
-from . import __base_url
 import pandas as pd
 
 
