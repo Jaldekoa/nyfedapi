@@ -1,9 +1,9 @@
 from nyfedapi import __get_data
-import pandas as pd
+import pandas
 
 __all__ = ["latest", "results_last_two_weeks", "results_last_number", "results_search"]
 
-def latest(operation: str, status: str, include: str) -> pd.DataFrame:
+def latest(operation: str, status: str, include: str) -> pandas.DataFrame:
     """
     Returns the latest AMBS operation Announcements or Results for the current day.
 
@@ -13,12 +13,12 @@ def latest(operation: str, status: str, include: str) -> pd.DataFrame:
         include (str): The level of details to include. Available values: summary, details.
 
     Returns:
-        pd.DataFrame: Current date operations.
+        pandas.DataFrame: Current date operations.
     """
     return __get_data(endpoint=f"/api/ambs/{operation}/{status}/{include}/latest.csv")
 
 
-def results_last_two_weeks(operation: str, include: str) -> pd.DataFrame:
+def results_last_two_weeks(operation: str, include: str) -> pandas.DataFrame:
     """
     Returns the last two weeks AMBS operations Results.
 
@@ -27,12 +27,12 @@ def results_last_two_weeks(operation: str, include: str) -> pd.DataFrame:
         include (str): The level of details to include. Available values: summary, details.
 
     Returns:
-        pd.DataFrame: Operations within last two weeks.
+        pandas.DataFrame: Operations within last two weeks.
     """
     return __get_data(endpoint=f"/api/ambs/{operation}/results/{include}/lastTwoWeeks.csv")
 
 
-def results_last_number(operation: str, include: str, number: int) -> pd.DataFrame:
+def results_last_number(operation: str, include: str, number: int) -> pandas.DataFrame:
     """
     Returns the last N number of AMBS operations Results.
 
@@ -42,12 +42,12 @@ def results_last_number(operation: str, include: str, number: int) -> pd.DataFra
         number (int): The last N amount of operations to return.
 
     Returns:
-        pd.DataFrame: Last n number of operations.
+        pandas.DataFrame: Last n number of operations.
     """
     return __get_data(endpoint=f"/api/ambs/{operation}/results/{include}/last/{number}.csv")
 
 
-def results_search(operation: str, include: str, **kwargs) -> pd.DataFrame:
+def results_search(operation: str, include: str, **kwargs) -> pandas.DataFrame:
     """
     Returns AMBS operations Results.
 
@@ -63,6 +63,6 @@ def results_search(operation: str, include: str, **kwargs) -> pd.DataFrame:
         desc (str): Only return operations which include the given Security Description. Partial identifiers are accepted.
 
     Returns:
-        pd.DataFrame: Filter operations.
+        pandas.DataFrame: Filter operations.
     """
     return __get_data(endpoint=f"/api/ambs/{operation}/results/{include}/search.csv", **kwargs)

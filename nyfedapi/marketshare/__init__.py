@@ -1,7 +1,8 @@
-import pandas as pd
+from nyfedapi import __get_data
+import pandas
 
 
-def qtrly_latest() -> pd.DataFrame:
+def qtrly_latest() -> pandas.DataFrame:
     """
     Returns the latest quarterly Market Share.
 
@@ -14,7 +15,7 @@ def qtrly_latest() -> pd.DataFrame:
     return None
 
 
-def ytd_latest() -> pd.DataFrame:
+def ytd_latest() -> pandas.DataFrame:
     """
     Returns the latest year-to-date Market Share.
 

@@ -1,19 +1,19 @@
 from nyfedapi import __get_data
-import pandas as pd
+import pandas
 
 __all__ = ["all_latest", "all_search", "secured_all_latest", "secured_last_number", "secured_search", "unsecured_all_latest", "unsecured_last_number", "unsecured_search"]
 
-def all_latest() -> pd.DataFrame:
+def all_latest() -> pandas.DataFrame:
     """
     Returns the latest secured and unsecured rates.
 
     Returns:
-        pd.DataFrame: Last As Of Date from current date rates.
+        pandas.DataFrame: Last As Of Date from current date rates.
     """
     return __get_data(endpoint=f"/api/rates/all/latest.csv")
     
 
-def all_search(**kwargs) -> pd.DataFrame:
+def all_search(**kwargs) -> pandas.DataFrame:
     """
     Returns secured and/or unsecured rates and/or volume.
 
@@ -23,22 +23,22 @@ def all_search(**kwargs) -> pd.DataFrame:
         type (str): The report type to return. Available values : rate, volume.
 
     Returns:
-        pd.DataFrame: Filter rates.
+        pandas.DataFrame: Filter rates.
     """
     return __get_data(endpoint=f"/api/rates/all/search.csv", **kwargs)
     
 
-def secured_all_latest() -> pd.DataFrame:
+def secured_all_latest() -> pandas.DataFrame:
     """
     Returns the latest secured rates.
 
     Returns:
-        pd.DataFrame: Last As Of Date from current date for Secured rates.
+        pandas.DataFrame: Last As Of Date from current date for Secured rates.
     """
     return __get_data(endpoint=f"/api/rates/secured/all/latest.csv")
     
 
-def secured_last_number(ratetype: str, number: int) -> pd.DataFrame:
+def secured_last_number(ratetype: str, number: int) -> pandas.DataFrame:
     """
     Returns the last N number of secured rates.
 
@@ -47,12 +47,12 @@ def secured_last_number(ratetype: str, number: int) -> pd.DataFrame:
         number (int): The last N amount of rates to return.
 
     Returns:
-        pd.DataFrame: Last n number of Secured rates.
+        pandas.DataFrame: Last n number of Secured rates.
     """
     return __get_data(endpoint=f"/api/rates/secured/{ratetype}/last/{number}.csv")
     
 
-def secured_search(ratetype: str, **kwargs) -> pd.DataFrame:
+def secured_search(ratetype: str, **kwargs) -> pandas.DataFrame:
     """
     Returns secured rates and/or volume.
 
@@ -65,22 +65,22 @@ def secured_search(ratetype: str, **kwargs) -> pd.DataFrame:
         type (str): The report type to return. Available values : rate, volume
 
     Returns:
-        pd.DataFrame: Filter Secured rates.
+        pandas.DataFrame: Filter Secured rates.
     """
     return __get_data(endpoint=f"/api/rates/secured/{ratetype}/search.csv", **kwargs)
     
 
-def unsecured_all_latest() -> pd.DataFrame:
+def unsecured_all_latest() -> pandas.DataFrame:
     """
     Returns the latest unsecured rates.
 
     Returns:
-        pd.DataFrame: Last As Of Date from current date for Unsecured rates.
+        pandas.DataFrame: Last As Of Date from current date for Unsecured rates.
     """
     return __get_data(endpoint=f"/api/rates/unsecured/all/latest.csv")
     
 
-def unsecured_last_number(ratetype: str, number: int) -> pd.DataFrame:
+def unsecured_last_number(ratetype: str, number: int) -> pandas.DataFrame:
     """
     Returns the last N number of unsecured rates.
 
@@ -89,12 +89,12 @@ def unsecured_last_number(ratetype: str, number: int) -> pd.DataFrame:
         number (int): The last N amount of rates to return.
 
     Returns:
-        pd.DataFrame: Last n number of Unsecured rates.
+        pandas.DataFrame: Last n number of Unsecured rates.
     """
     return __get_data(endpoint=f"/api/rates/unsecured/{ratetype}/last/{number}.csv")
     
 
-def unsecured_search(ratetype: str, **kwargs) -> pd.DataFrame:
+def unsecured_search(ratetype: str, **kwargs) -> pandas.DataFrame:
     """
     Returns unsecured rates and/or volume.
 
@@ -107,6 +107,6 @@ def unsecured_search(ratetype: str, **kwargs) -> pd.DataFrame:
         type (str): The report type to return. Available values : rate, volume
 
     Returns:
-        pd.DataFrame: Filter Unsecured rates.
+        pandas.DataFrame: Filter Unsecured rates.
     """
     return __get_data(endpoint=f"/api/rates/unsecured/{ratetype}/search.csv", **kwargs)

@@ -1,9 +1,9 @@
 from nyfedapi import __get_data
-import pandas as pd
+import pandas
 
 __all__ = ["latest", "last_number", "search", "list_counterparties"]
 
-def latest(operation_type: str) -> pd.DataFrame:
+def latest(operation_type: str) -> pandas.DataFrame:
     """
     Returns the latest Liquidity Swaps operation Results posted on current day.
 
@@ -11,12 +11,12 @@ def latest(operation_type: str) -> pd.DataFrame:
         operation_type (str): The operation type to search for. Available values : all, usdollar, nonusdollar.
 
     Returns:
-        pd.DataFrame: Current date posted operations.
+        pandas.DataFrame: Current date posted operations.
     """
     return __get_data(endpoint=f"/api/fxs/{operation_type}/latest.csv")
 
 
-def last_number(operation_type: str, number: int) -> pd.DataFrame:
+def last_number(operation_type: str, number: int) -> pandas.DataFrame:
     """
     Returns the last N number of Liquidity Swaps operations Results.
 
@@ -25,12 +25,12 @@ def last_number(operation_type: str, number: int) -> pd.DataFrame:
         number (int): The last N amount of trades to return.
 
     Returns:
-        pd.DataFrame: Last n number of operations.
+        pandas.DataFrame: Last n number of operations.
     """
     return __get_data(endpoint=f"/api/fxs/{operation_type}/last/{number}.csv")
 
 
-def search(operation_type: str, **kwargs) -> pd.DataFrame:
+def search(operation_type: str, **kwargs) -> pandas.DataFrame:
     """
 
     Args:
@@ -43,16 +43,16 @@ def search(operation_type: str, **kwargs) -> pd.DataFrame:
         counterparties (str): A comma-separated list of counterparty names to search for. Partial names are accepted.
 
     Returns:
-        pd.DataFrame: Filter operations.
+        pandas.DataFrame: Filter operations.
     """
     return __get_data(endpoint=f"/api/fxs/{operation_type}/search.csv", **kwargs)
 
 
-def list_counterparties() -> pd.DataFrame:
+def list_counterparties() -> pandas.DataFrame:
     """
     Returns Counterparties of Liquidity Swaps operations.
 
     Returns:
-        pd.DataFrame: List of Counterparties.
+        pandas.DataFrame: List of Counterparties.
     """
     return __get_data(endpoint=f"/api/fxs/list/counterparties.csv")

@@ -1,7 +1,8 @@
-import pandas as pd
+from nyfedapi import __get_data
+import pandas
 
 
-def latest(guidesheet_type: str) -> pd.DataFrame:
+def latest(guidesheet_type: str) -> pandas.DataFrame:
     """
     Returns the latest Guide Sheet.
 
@@ -17,7 +18,7 @@ def latest(guidesheet_type: str) -> pd.DataFrame:
     return None
 
 
-def previous(guidesheet_type: str) -> pd.DataFrame:
+def previous(guidesheet_type: str) -> pandas.DataFrame:
     """
     Returns the previous Guide Sheet.
 
