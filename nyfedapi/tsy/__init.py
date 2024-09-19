@@ -1,7 +1,7 @@
-from urllib.parse import urlencode
-from . import __base_url
+from nyfedapi import __get_data
 import pandas as pd
 
+__all__ = ["latest", "results_last_two_weeks", "results_last_number", "results_search"]
 
 def latest(operation: str, status: str, include: str) -> pd.DataFrame:
     """
@@ -15,8 +15,8 @@ def latest(operation: str, status: str, include: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Current date operations.
     """
-    return pd.read_csv(f"{__base_url}/api/tsy/{operation}/{status}/{include}/latest.csv")
-
+    return __get_data(endpoint=f"/api/tsy/{operation}/{status}/{include}/latest.csv")
+    
 
 def results_last_two_weeks(operation: str, include: str) -> pd.DataFrame:
     """
@@ -29,8 +29,8 @@ def results_last_two_weeks(operation: str, include: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Operations within last two weeks.
     """
-    return pd.read_csv(f"{__base_url}/api/tsy/{operation}/results/{include}/lastTwoWeeks.csv")
-
+    return __get_data(endpoint=f"/api/tsy/{operation}/results/{include}/lastTwoWeeks.csv")
+    
 
 def results_last_number(operation: str, include: str, number: int) -> pd.DataFrame:
     """
@@ -44,7 +44,7 @@ def results_last_number(operation: str, include: str, number: int) -> pd.DataFra
     Returns:
         pd.DataFrame: Last n number of operations.
     """
-    return pd.read_csv(f"{__base_url}/api/tsy/{operation}/results/{include}/last/{number}.csv")
+    return __get_data(endpoint=f"/api/tsy/{operation}/results/{include}/last/{number}.csv")
 
 
 def results_search(operation: str, include: str, **kwargs) -> pd.DataFrame:
@@ -65,4 +65,4 @@ def results_search(operation: str, include: str, **kwargs) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Filter operations
     """
-    return pd.read_csv(f"{__base_url}/api/tsy/{operation}/results/{include}/search.csv?{urlencode(kwargs)}")
+    return __get_data(endpoint=f"/api/tsy/{operation}/results/{include}/search.csv", **kwargs=)
