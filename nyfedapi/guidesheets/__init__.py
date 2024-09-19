@@ -15,7 +15,7 @@ def latest(guidesheet_type: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Current Guide Sheets.
     """
-    return pd.read_json(f"{__base_url}/api/guidesheets/{guidesheet_type}/latest.json")
+    return None
 
 
 def previous(guidesheet_type: str) -> pd.DataFrame:
@@ -31,4 +31,4 @@ def previous(guidesheet_type: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Previously Posted Guide Sheets.
     """
-    return pd.read_json(f"{__base_url}/api/guidesheets/{guidesheet_type}/previous.json")
+    return None
