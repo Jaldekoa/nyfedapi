@@ -65,4 +65,4 @@ def results_search(operation: str, include: str, **kwargs) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Filter operations
     """
-    return __get_data(endpoint=f"/api/tsy/{operation}/results/{include}/search.csv", **kwargs=)
+    return __get_data(endpoint=f"/api/tsy/{operation}/results/{include}/search.csv", **kwargs)
