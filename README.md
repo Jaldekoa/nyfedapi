@@ -1,8 +1,31 @@
 # Federal Reserve Bank of New York (FRBoNY) Wrapper Documentation
-This repository contains a Python wrapper to interact with the official Federal Reserve Bank of New York (FRBoNY) API.
+This repository contains a Python wrapper to easily retrieve data from the Federal Reserve Bank of New York (FRBoNY) official API in pandas format.
+
+## Overview
 The Markets Data APIs are provided to external users and applications to request data from the Federal Reserve Bank of New York. FRBoNY's API does not require tokens or registration, so feel free to use it immediately.
 
-Official API Documentation: https://markets.newyorkfed.org/static/docs/markets-api.html
+There are ten databases with their endpoints that the FRBoNY has exposed to the public:
+
+- Agency Mortgage-Backed Securities Operations
+- Central Bank Liquidity Swaps Operations
+- Guide Sheets
+- Primary Dealer Statistics
+- Primary Dealer Statistics Market Share
+- Reference Rates
+- Repo and Reverse Repo Operations
+- Securities Lending Operations
+- System Open Market Account Holdings
+- Treasury Securities Operations
+
+## Requirements
+- Python 3.9 or higher.
+- Requests
+- Pandas
+
+## Installation
+```terminal
+pip install nyfedapi
+```
 
 ## Agency Mortage-Backed Securities Operations
 
@@ -10,7 +33,8 @@ Official API Documentation: https://markets.newyorkfed.org/static/docs/markets-a
 Returns the latest AMBS operation Announcements or Results for the current day.
 
 ```python
-FRBoNY.ambs.latest(operation, status, include)
+from nyfedapi import ambs
+df = ambs.latest(operation, status, include)
 ```
 
 #### Parameters
@@ -28,7 +52,8 @@ FRBoNY.ambs.latest(operation, status, include)
 Returns the last two weeks AMBS operations Results.
 
 ```python
-FRBoNY.ambs.results_last_two_weeks(operation, include)
+from nyfedapi import ambs
+df = ambs.results_last_two_weeks(operation, include)
 ```
 
 #### Parameters
@@ -45,7 +70,8 @@ FRBoNY.ambs.results_last_two_weeks(operation, include)
 Returns the last N number of AMBS operations Results.
 
 ```python
-FRBoNY.ambs.results_last_two_weeks(operation, include, number)
+from nyfedapi import ambs
+df = ambs.results_last_two_weeks(operation, include, number)
 ```
 
 #### Parameters
@@ -63,7 +89,8 @@ FRBoNY.ambs.results_last_two_weeks(operation, include, number)
 Returns AMBS operations Results.
 
 ```python
-FRBoNY.ambs.results_search(operation, include, **kwargs)
+from nyfedapi import ambs
+df = ambs.results_search(operation, include, **kwargs)
 ```
 
 #### Parameters
@@ -88,7 +115,8 @@ FRBoNY.ambs.results_search(operation, include, **kwargs)
 Returns the latest Liquidity Swaps operation Results posted on current day.
 
 ```python
-FRBoNY.fxs.latest(operation_type)
+from nyfedapi import fxs
+df = fxs.latest(operation_type)
 ```
 
 #### Parameters
@@ -104,7 +132,8 @@ FRBoNY.fxs.latest(operation_type)
 Returns the last N number of Liquidity Swaps operations Results.
 
 ```python
-FRBoNY.fxs.last_number(operation_type, number)
+from nyfedapi import fxs
+df = fxs.last_number(operation_type, number)
 ```
 
 #### Parameters
@@ -121,7 +150,8 @@ FRBoNY.fxs.last_number(operation_type, number)
 Returns Liquidity Swaps operation Results.
 
 ```python
-FRBoNY.fxs.search(operation_type, **kwargs)
+from nyfedapi import fxs
+df = fxs.search(operation_type, **kwargs)
 ```
 
 #### Parameters
@@ -141,7 +171,8 @@ FRBoNY.fxs.search(operation_type, **kwargs)
 Returns Counterparties of Liquidity Swaps operations.
 
 ```python
-FRBoNY.fxs.counterparties()
+from nyfedapi import fxs
+df = fxs.counterparties()
 ```
 
 #### Returns
@@ -154,7 +185,8 @@ FRBoNY.fxs.counterparties()
 Returns the latest Guide Sheet. Work in Progress (WIP).
 
 ```python
-FRBoNY.guidesheets.latest()
+from nyfedapi import guidesheets
+df = guidesheets.latest()
 ```
 
 #### Parameters
@@ -170,7 +202,8 @@ FRBoNY.guidesheets.latest()
 Returns the previous Guide Sheet. Work in Progress (WIP).
 
 ```python
-FRBoNY.guidesheets.previous()
+from nyfedapi import guidesheets
+df = guidesheets.previous()
 ```
 
 #### Parameters
@@ -188,7 +221,8 @@ FRBoNY.guidesheets.previous()
 Returns the latest Survey results for each timeseries.
 
 ```python
-FRBoNY.pd.latest()
+from nyfedapi import pd
+df = pd.latest()
 ```
 
 #### Parameters
@@ -204,7 +238,8 @@ FRBoNY.pd.latest()
 Returns all Survey results.
 
 ```python
-FRBoNY.pd.get_all_timeseries()
+from nyfedapi import pd
+df = pd.get_all_timeseries()
 ```
 
 #### Returns
@@ -215,7 +250,8 @@ FRBoNY.pd.get_all_timeseries()
 Returns Description of timeseries/keyids.
 
 ```python
-FRBoNY.pd.list_timeseries()
+from nyfedapi import pd
+df = pd.list_timeseries()
 ```
 
 #### Returns
@@ -226,7 +262,8 @@ FRBoNY.pd.list_timeseries()
 Returns all As Of Dates with respective Series Break.
 
 ```python
-FRBoNY.pd.list_asof()
+from nyfedapi import pd
+df = pd.list_asof()
 ```
 
 #### Returns
@@ -237,7 +274,8 @@ FRBoNY.pd.list_asof()
 Returns Series Breaks including Label, Start and End Date.
 
 ```python
-FRBoNY.pd.list_seriesbreaks()
+from nyfedapi import pd
+df = pd.list_seriesbreaks()
 ```
 
 #### Returns
@@ -248,7 +286,8 @@ FRBoNY.pd.list_seriesbreaks()
 Returns single date Survey results.
 
 ```python
-FRBoNY.pd.get_asof()
+from nyfedapi import pd
+df = pd.get_asof()
 ```
 
 #### Parameters
@@ -264,7 +303,8 @@ FRBoNY.pd.get_asof()
 Return Survey results for given timeseries across all Series Breaks. To query multiple timeseries, separate each with underscore(_).
 
 ```python
-FRBoNY.pd.get_timeseries()
+from nyfedapi import pd
+df = pd.get_timeseries()
 ```
 
 #### Parameters
@@ -280,7 +320,8 @@ FRBoNY.pd.get_timeseries()
 Return Survey results for given timeseries across all Series Breaks. To query multiple timeseries, separate each with underscore(_).
 
 ```python
-FRBoNY.pd.get_seriesbreaks_timeseries()
+from nyfedapi import pd
+df = pd.get_seriesbreaks_timeseries()
 ```
 
 #### Parameters
@@ -299,7 +340,8 @@ FRBoNY.pd.get_seriesbreaks_timeseries()
 Returns the latest quarterly Market Share.
 
 ```python
-FRBoNY.marketshare.qtrly_latest()
+from nyfedapi import marketshare
+df = marketshare.qtrly_latest()
 ```
 
 #### Returns
@@ -311,7 +353,8 @@ FRBoNY.marketshare.qtrly_latest()
 Returns the latest year-to-date Market Share.
 
 ```python
-FRBoNY.marketshare.ytd_latest()
+from nyfedapi import marketshare
+df = marketshare.ytd_latest()
 ```
 
 #### Returns
@@ -324,7 +367,8 @@ FRBoNY.marketshare.ytd_latest()
 Returns the latest secured and unsecured rates.
 
 ```python
-FRBoNY.rates.all_latest()
+from nyfedapi import rates
+df = rates.all_latest()
 ```
 
 #### Returns
@@ -335,7 +379,8 @@ FRBoNY.rates.all_latest()
 Returns the latest secured and unsecured rates.
 
 ```python
-FRBoNY.rates.all_search()
+from nyfedapi import rates
+df = rates.all_search()
 ```
 
 #### Parameters
@@ -353,7 +398,8 @@ FRBoNY.rates.all_search()
 Returns the latest secured rates.
 
 ```python
-FRBoNY.rates.secured_all_latest()
+from nyfedapi import rates
+df = rates.secured_all_latest()
 ```
 
 #### Returns
@@ -364,7 +410,8 @@ FRBoNY.rates.secured_all_latest()
 Returns the last N number of secured rates.
 
 ```python
-FRBoNY.rates.secured_last_number(rate_type, number)
+from nyfedapi import rates
+df = rates.secured_last_number(rate_type, number)
 ```
 
 #### Parameters
@@ -381,7 +428,8 @@ FRBoNY.rates.secured_last_number(rate_type, number)
 Returns secured rates and/or volume.
 
 ```python
-FRBoNY.rates.secured_search(rate_type, **kwargs)
+from nyfedapi import rates
+df = rates.secured_search(rate_type, **kwargs)
 ```
 
 #### Parameters
@@ -400,7 +448,8 @@ FRBoNY.rates.secured_search(rate_type, **kwargs)
 Returns the latest unsecured rates.
 
 ```python
-FRBoNY.rates.unsecured_all_latest()
+from nyfedapi import rates
+df = rates.unsecured_all_latest()
 ```
 
 #### Returns
@@ -411,7 +460,8 @@ FRBoNY.rates.unsecured_all_latest()
 Returns the last N number of unsecured rates.
 
 ```python
-FRBoNY.rates.unsecured_last_number(rate_type, number)
+from nyfedapi import rates
+df = rates.unsecured_last_number(rate_type, number)
 ```
 
 #### Parameters
@@ -428,7 +478,8 @@ FRBoNY.rates.unsecured_last_number(rate_type, number)
 Returns unsecured rates and/or volume.
 
 ```python
-FRBoNY.rates.unsecured_search(rate_type, **kwargs)
+from nyfedapi import rates
+df = rates.unsecured_search(rate_type, **kwargs)
 ```
 
 #### Parameters
@@ -449,7 +500,8 @@ FRBoNY.rates.unsecured_search(rate_type, **kwargs)
 Returns the latest Repo and/or Reverse Repo operations Announcements or Results for the current day.
 
 ```python
-FRBoNY.rp.latest(operation_type, method, status)
+from nyfedapi import rp
+df = rp.latest(operation_type, method, status)
 ```
 
 #### Parameters
@@ -467,7 +519,8 @@ FRBoNY.rp.latest(operation_type, method, status)
 Returns the last two weeks Repo and/or Reverse Repo operations Results.
 
 ```python
-FRBoNY.rp.results_last_two_weeks(operation_type, method)
+from nyfedapi import rp
+df = rp.results_last_two_weeks(operation_type, method)
 ```
 
 #### Parameters
@@ -484,7 +537,8 @@ FRBoNY.rp.results_last_two_weeks(operation_type, method)
 Returns the last N number of Repo and/or Reverse Repo operations Results.
 
 ```python
-FRBoNY.rp.results_last_number(operation_type, method, number)
+from nyfedapi import rp
+df = rp.results_last_number(operation_type, method, number)
 ```
 
 #### Parameters
@@ -502,7 +556,8 @@ FRBoNY.rp.results_last_number(operation_type, method, number)
 Returns Repo and/or Reverse Repo operation Results.
 
 ```python
-FRBoNY.rp.results_search(**kwargs)
+from nyfedapi import rp
+df = rp.results_search(**kwargs)
 ```
 
 #### Parameters
@@ -523,7 +578,8 @@ FRBoNY.rp.results_search(**kwargs)
 Returns Propositions for Reverse Repo operations.
 
 ```python
-FRBoNY.rp.reverserepo_propositions_search(**kwargs)
+from nyfedapi import rp
+df = rp.reverserepo_propositions_search(**kwargs)
 ```
 
 #### Parameters
@@ -542,7 +598,8 @@ FRBoNY.rp.reverserepo_propositions_search(**kwargs)
 Returns the latest Securities Lending operation Results for the current day.
 
 ```python
-FRBoNY.seclending.results_latest(operation, include)
+from nyfedapi import seclending
+df = seclending.results_latest(operation, include)
 ```
 
 #### Parameters
@@ -559,7 +616,8 @@ FRBoNY.seclending.results_latest(operation, include)
 Returns the last two weeks Securities Lending operation Results and/or Extensions.
 
 ```python
-FRBoNY.seclending.results_last_two_weeks(operation, include)
+from nyfedapi import seclending
+df = seclending.results_last_two_weeks(operation, include)
 ```
 
 #### Parameters
@@ -576,7 +634,8 @@ FRBoNY.seclending.results_last_two_weeks(operation, include)
 Returns the last N number of Securities Lending operation Results and/or Extensions.
 
 ```python
-FRBoNY.seclending.results_last_number(operation, include, number)
+from nyfedapi import seclending
+df = seclending.results_last_number(operation, include, number)
 ```
 
 #### Parameters
@@ -594,7 +653,8 @@ FRBoNY.seclending.results_last_number(operation, include, number)
 Returns Securities Lending operation Results and/or Extensions.
 
 ```python
-FRBoNY.seclending.results_search(operation, include)
+from nyfedapi import seclending
+df = seclending.results_search(operation, include)
 ```
 
 #### Parameters
@@ -613,7 +673,8 @@ FRBoNY.seclending.results_search(operation, include)
 Returns the latest SOMA holdings As Of Date.
 
 ```python
-FRBoNY.soma.asofdates_latest()
+from nyfedapi import soma
+df = soma.asofdates_latest()
 ```
 
 #### Returns
@@ -624,7 +685,8 @@ FRBoNY.soma.asofdates_latest()
 Returns Summary Of SOMA holdings for each As of Date and holding type.
 
 ```python
-FRBoNY.soma.summary()
+from nyfedapi import soma
+ndf = soma.summary()
 ```
 
 #### Returns
@@ -635,7 +697,8 @@ FRBoNY.soma.summary()
 Returns all SOMA holdings As of Date.
 
 ```python
-FRBoNY.soma.asofdates_list()
+from nyfedapi import soma
+df = soma.asofdates_list()
 ```
 
 #### Returns
@@ -646,7 +709,8 @@ FRBoNY.soma.asofdates_list()
 Returns the last three months Agency Release and As Of Dates.
 
 ```python
-FRBoNY.soma.agency_get_release_log()
+from nyfedapi import soma
+df = soma.agency_get_release_log()
 ```
 
 #### Returns
@@ -657,7 +721,8 @@ FRBoNY.soma.agency_get_release_log()
 Returns a single date SOMA Agency Holdings.
 
 ```python
-FRBoNY.soma.agency_get_asof(date)
+from nyfedapi import soma
+df = soma.agency_get_asof(date)
 ```
 
 #### Parameters
@@ -673,7 +738,8 @@ FRBoNY.soma.agency_get_asof(date)
 Returns all SOMA Agency Holdings for a single CUSIP.
 
 ```python
-FRBoNY.soma.agency_get_cusip(cusip)
+from nyfedapi import soma
+df = soma.agency_get_cusip(cusip)
 ```
 
 #### Parameters
@@ -689,7 +755,8 @@ FRBoNY.soma.agency_get_cusip(cusip)
 Returns a single date SOMA Agency Holdings for a Agency holding type.
 
 ```python
-FRBoNY.agency_get_holdingtype_asof(holding_type, date)
+from nyfedapi import soma
+df = soma.agency_get_holdingtype_asof(holding_type, date)
 ```
 
 #### Parameters
@@ -706,7 +773,8 @@ FRBoNY.agency_get_holdingtype_asof(holding_type, date)
 Returns a single date Weighted Average Maturity for Agency Debt.
 
 ```python
-FRBoNY.agency_wam_asof(date)
+from nyfedapi import soma
+df = soma.agency_wam_asof(date)
 ```
 
 #### Parameters
@@ -722,7 +790,8 @@ FRBoNY.agency_wam_asof(date)
 Returns the last three months Treasury Release and As Of Dates.
 
 ```python
-FRBoNY.soma.tsy_get_release_log()
+from nyfedapi import soma
+df = soma.tsy_get_release_log()
 ```
 
 #### Returns
@@ -733,7 +802,8 @@ FRBoNY.soma.tsy_get_release_log()
 Returns a single date SOMA Treasury Holdings.
 
 ```python
-FRBoNY.soma.tsy_get_asof(date)
+from nyfedapi import soma
+df = soma.tsy_get_asof(date)
 ```
 
 #### Parameters
@@ -749,7 +819,8 @@ FRBoNY.soma.tsy_get_asof(date)
 Returns all SOMA Treasury Holdings for a single CUSIP.
 
 ```python
-FRBoNY.soma.tsy_get_cusip(cusip)
+from nyfedapi import soma
+df = soma.tsy_get_cusip(cusip)
 ```
 
 #### Parameters
@@ -765,7 +836,8 @@ FRBoNY.soma.tsy_get_cusip(cusip)
 Returns a single date SOMA Treasury Holdings for a Treasury holding type.
 
 ```python
-FRBoNY.tsy_get_holdingtype_asof(holding_type, date)
+from nyfedapi import soma
+df = soma.tsy_get_holdingtype_asof(holding_type, date)
 ```
 
 #### Parameters
@@ -782,7 +854,8 @@ FRBoNY.tsy_get_holdingtype_asof(holding_type, date)
 Returns a single date Weighted Average Maturity for a Treasury holding type.
 
 ```python
-FRBoNY.tsy_wam_holdingtype_asof(holding_type, date)
+from nyfedapi import soma
+ndf = soma.tsy_wam_holdingtype_asof(holding_type, date)
 ```
 
 #### Parameters
@@ -799,7 +872,8 @@ FRBoNY.tsy_wam_holdingtype_asof(holding_type, date)
 Returns all SOMA Treasury Holdings at monthly intervals.
 
 ```python
-FRBoNY.soma.tsy_get_monthly()
+from nyfedapi import soma
+df = soma.tsy_get_monthly()
 ```
 
 #### Returns
@@ -812,7 +886,8 @@ FRBoNY.soma.tsy_get_monthly()
 Returns the latest Treasury operation Announcements or Results for the current day.
 
 ```python
-FRBoNY.tsy.latest(operation, status, include)
+from nyfedapi import tsy
+df = tsy.latest(operation, status, include)
 ```
 
 #### Parameters
@@ -830,7 +905,8 @@ FRBoNY.tsy.latest(operation, status, include)
 Returns the last two weeks Treasury operations Results.
 
 ```python
-FRBoNY.tsy.results_last_two_weeks(operation, include)
+from nyfedapi import tsy
+df = tsy.results_last_two_weeks(operation, include)
 ```
 
 #### Parameters
@@ -847,7 +923,8 @@ FRBoNY.tsy.results_last_two_weeks(operation, include)
 Returns the last N number of Treasury operations Results.
 
 ```python
-FRBoNY.tsy.results_last_number(operation, include, number)
+from nyfedapi import tsy
+df = tsy.results_last_number(operation, include, number)
 ```
 
 #### Parameters
@@ -865,7 +942,8 @@ FRBoNY.tsy.results_last_number(operation, include, number)
 Returns Treasury operation Results.
 
 ```python
-FRBoNY.tsy.results_search(operation, include)
+from nyfedapi import tsy
+df = tsy.results_search(operation, include)
 ```
 
 #### Parameters
@@ -878,21 +956,11 @@ FRBoNY.tsy.results_search(operation, include)
 - `pd.DataFrame`: A DataFrame containing Treasury operation results.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## TODO
-- [ ] Añadir un traductor de kwargs. Ej: startDate -> start_date
-- [ ] Error con ```seclending.results_search()```. Aunque startDate y endDate no son required, si no se añaden da un 404 con respuesta ["Cannot exceed allowed span of 1 year"]
-- [ ] Error con ```ambs.results_search()```. Aunque startDate y endDate no son required, si no se añaden da un 404 con respuesta ["Cannot exceed allowed span of 2 year"]
+- [ ] Add a keyword argument (kwargs) translator. Example: startDate -> start_date
+- [ ] Implement the marketshare and guidesheets endpoints, as they currently do not support CSV format download.
+- [ ]  Issue with ```seclending.results_search()```: Although startDate and endDate are not required, omitting them results in a 404 error with the response: ["Cannot exceed allowed span of 1 year"].
+- [ ] Issue with ```ambs.results_search()```: Although startDate and endDate are not required, omitting them results in a 404 error with the response: ["Cannot exceed allowed span of 2 years"].
+
+## API Documentation
+- [Markets Data APIs: Federal Reserve Bank of New York (FRBoNY)](https://markets.newyorkfed.org/static/docs/markets-api.html)
