@@ -1,4 +1,4 @@
-# Federal Reserve Bank of New York (FRBoNY) Wrapper Documentation
+# nyfedapi
 This repository contains a Python wrapper to easily retrieve data from the Federal Reserve Bank of New York (FRBoNY) official API in pandas format.
 
 ## Overview
